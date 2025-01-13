@@ -15,3 +15,5 @@ edition = "2021"
 [dependencies]
 bevy_easy_shared_library = "0.1.0"
 ```
+
+Generally this crate will be installed via inheritance through the bevy_easy_shared_library.

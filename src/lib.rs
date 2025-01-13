@@ -19,3 +19,24 @@ impl DatabaseConnection {
         self.conn.clone()
     }
 }
+
+#[derive(Debug)]
+pub enum ErrorTypePlayerHandler {
+    AddPlayerFromDbToPartyFailed(String),
+    DatabaseLockPoisoned,
+    DBActionFailed(String),
+    DBQueryFailed(String),
+    DBQueryMappingFailed(String),
+    IndexOutOfBounds(String),
+    LockFailed(String),
+    PartyActionFailed(String),
+    PartySizeAtSetLimit,
+    PartySizeGreaterThanSetLimit,
+    PlayerAiCallFailed(String),
+    PlayerLocalCallFailed(String),
+    PlayerRemoteCallFailed(String),
+    PluginDataRetreivalFailed(String),
+    UuidParsingFailed(String),
+    VarErrorNotPresent,
+    VarErrorNotUnicode(String),
+}

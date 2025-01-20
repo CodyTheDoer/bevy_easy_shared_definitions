@@ -2,6 +2,31 @@ use bevy::prelude::*;
 use std::sync::{Arc, Mutex};
 use rusqlite::Connection;
 
+pub struct BevyEasySharedDefinitionsPlugin {}
+
+impl Plugin for BevyEasySharedDefinitionsPlugin {
+    fn build(&self, app: &mut App) { // Builds automatically on .add_plugins() call
+        app.insert_resource(BevyEasySuiteDebugToConsole::set(false));
+    }
+}
+
+#[derive(Resource)]
+pub struct BevyEasySuiteDebugToConsole {
+    flag: bool,
+}
+
+impl BevyEasySuiteDebugToConsole {
+    pub fn set(flag: bool) -> Self {
+        BevyEasySuiteDebugToConsole {
+            flag: flag,
+        }
+    }
+
+    pub fn get(&self) -> bool {
+        self.flag
+    }
+}
+
 #[derive(Resource)]
 pub struct DatabaseConnection {
     pub conn: Arc<Mutex<Connection>>,
@@ -34,8 +59,10 @@ pub enum ErrorTypePlayerHandler {
     PartySizeGreaterThanSetLimit,
     PlayerAiCallFailed(String),
     PlayerLocalCallFailed(String),
+    PlayerMainCallFailed(String),
     PlayerRemoteCallFailed(String),
     PluginDataRetreivalFailed(String),
+    PoisonErrorBox(String),
     UuidParsingFailed(String),
     VarErrorNotPresent,
     VarErrorNotUnicode(String),

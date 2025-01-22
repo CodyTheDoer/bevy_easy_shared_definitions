@@ -2,6 +2,13 @@ use bevy::prelude::*;
 use std::sync::{Arc, Mutex};
 use rusqlite::Connection;
 
+pub mod prelude {
+    pub use crate::{
+        DatabaseConnection,
+        ErrorTypePlayerHandler,
+    };
+}
+
 pub struct BevyEasySharedDefinitionsPlugin {}
 
 impl Plugin for BevyEasySharedDefinitionsPlugin {
